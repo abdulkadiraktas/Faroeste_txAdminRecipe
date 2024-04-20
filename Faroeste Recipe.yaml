@@ -4,6 +4,9 @@ version: 1.0.0
 author: Abdulkadir Aktaş
 description: Bu tarif Faroeste için Abdulkadir Aktaş tarafından hazırlanmıştır.
 
+variables:
+    databaseName: faroeste
+
 tasks:
 #  Download Base Files
   - action: download_github
@@ -55,40 +58,49 @@ tasks:
     path: ./tmp/oxmysql.zip
   
   - action: unzip
-    dest: ./resources/[ox]/oxmysql
+    dest: ./resources/[ox]/
     src: ./tmp/oxmysql.zip
 
-  - action: download_github
-    src: https://github.com/overextended/ox_lib
-    ref: master
-    dest: ./resources/[ox]/ox_lib
+  - action: download_file
+    url: https://github.com/overextended/ox_lib/releases/latest/download/ox_lib.zip
+    path: ./tmp/ox_lib.zip
+  
+  - action: unzip
+    dest: ./resources/[ox]/
+    src: ./tmp/ox_lib.zip
+
+ 
 
 
-# faroest side  
+# faroeste side  
   - action: download_github
-    src: https://github.com/faroeste-roleplay/frp_core
-    ref: master
+    src: https://github.com/Faroeste-Roleplay/frp_core
+    ref: main
     dest: ./resources/[faroeste]/frp_core
 
   - action: download_github
-    src: https://github.com/faroeste-roleplay/frp_creator
-    ref: master
+    src: https://github.com/Faroeste-Roleplay/frp_creator
+    ref: main
     dest: ./resources/[faroeste]/frp_creator
     
   - action: download_github
-    src: https://github.com/faroeste-roleplay/frp_queue
-    ref: master
+    src: https://github.com/Faroeste-Roleplay/frp_queue
+    ref: main
     dest: ./resources/[faroeste]/frp_queue
 
   - action: download_github
-    src: https://github.com/faroeste-roleplay/frp_spawn_selector
-    ref: master
+    src: https://github.com/Faroeste-Roleplay/frp_spawn_selector
+    ref: main
     dest: ./resources/[faroeste]/frp_spawn_selector
 
-  - action: download_github
-    src: https://github.com/faroeste-roleplay/ox_inventory
-    ref: master
-    dest: ./resources/[faroeste]/ox_inventory
+  
+  - action: download_file
+    url: https://github.com/abdulkadiraktas/Faroeste_ox_inventory/releases/latest/download/Faroeste_ox_inventory.zip
+    path: ./tmp/ox_inventory.zip
+  
+  - action: unzip
+    dest: ./resources/[faroeste]/ox_inventory/
+    src: ./tmp/ox_inventory.zip
 
 # Clean tmp
   - action: remove_path
