@@ -1,0 +1,95 @@
+$engine: 3
+name: Faroeste
+version: 1.0.0
+author: Abdulkadir Aktaş
+description: Bu tarif Faroeste için Abdulkadir Aktaş tarafından hazırlanmıştır.
+
+tasks:
+#  Download Base Files
+  - action: download_github
+    src: https://github.com/abdulkadiraktas/Faroeste_txAdminRecipe
+    ref: main
+    dest: ./tmp/Faroeste_txAdminRecipe
+  
+  - action: move_path
+    src: ./tmp/Faroeste_txAdminRecipe/server.cfg
+    dest: ./server.cfg
+  
+  - action: move_path
+    src: ./tmp/Faroeste_txAdminRecipe/Faroeste.png
+    dest: ./Faroeste.png
+
+# Prepare Database
+  - action: connect_database
+  - action: query_database
+    query: |      
+      DROP DATABASE IF EXISTS `faroeste`;
+      CREATE DATABASE IF NOT EXISTS `faroeste`;
+
+  - action: write_file
+    file: ./tmp/delete.sql
+    append: true
+    data: |
+      ensure
+
+  - action: replace_string
+    file: ./tmp/delete.sql
+    search: "ensure"
+    replace: "DROP DATABASE IF EXISTS `{{dbName}}`"
+  
+  - action: query_database
+    file: ./tmp/delete.sql
+  
+  - action: query_database
+    file: ./tmp/Faroeste_txAdminRecipe/db.sql
+
+# STANDALONE CFX
+  - action: download_github
+    src: https://github.com/citizenfx/cfx-server-data
+    subpath: resources
+    dest: ./resources/[cfx-default]    
+    
+# ox_side    
+  - action: download_file
+    url: https://github.com/overextended/oxmysql/releases/latest/download/oxmysql.zip
+    path: ./tmp/oxmysql.zip
+  
+  - action: unzip
+    dest: ./resources/[ox]/oxmysql
+    src: ./tmp/oxmysql.zip
+
+  - action: download_github
+    src: https://github.com/overextended/ox_lib
+    ref: master
+    dest: ./resources/[ox]/ox_lib
+
+
+# faroest side  
+  - action: download_github
+    src: https://github.com/faroeste-roleplay/frp_core
+    ref: master
+    dest: ./resources/[faroeste]/frp_core
+
+  - action: download_github
+    src: https://github.com/faroeste-roleplay/frp_creator
+    ref: master
+    dest: ./resources/[faroeste]/frp_creator
+    
+  - action: download_github
+    src: https://github.com/faroeste-roleplay/frp_queue
+    ref: master
+    dest: ./resources/[faroeste]/frp_queue
+
+  - action: download_github
+    src: https://github.com/faroeste-roleplay/frp_spawn_selector
+    ref: master
+    dest: ./resources/[faroeste]/frp_spawn_selector
+
+  - action: download_github
+    src: https://github.com/faroeste-roleplay/ox_inventory
+    ref: master
+    dest: ./resources/[faroeste]/ox_inventory
+
+# Clean tmp
+  - action: remove_path
+    path: ./tmp
