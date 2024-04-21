@@ -13,19 +13,22 @@ variables:
     server_locale : en-US
     load_server_icon : Faroeste.png
     sv_enforceGameBuild : 1491
+    datadog_key : none
+    datadog_hostname : none
+    datadog_site : datadoghq.com
 tasks:
 #  Download Base Files
   - action: download_github
-    src: https://github.com/abdulkadiraktas/Faroeste_txAdminRecipe
+    src: https://github.com/Faroeste-Roleplay/txAdminRecipe
     ref: main
-    dest: ./tmp/Faroeste_txAdminRecipe
+    dest: ./tmp/FRP_txAdminRecipe
   
   - action: move_path
-    src: ./tmp/Faroeste_txAdminRecipe/server.cfg
+    src: ./tmp/FRP_txAdminRecipe/server.cfg
     dest: ./server.cfg
   
   - action: move_path
-    src: ./tmp/Faroeste_txAdminRecipe/Faroeste.png
+    src: ./tmp/FRP_txAdminRecipe/Faroeste.png
     dest: ./Faroeste.png
 
 # Prepare Database
@@ -50,7 +53,7 @@ tasks:
     file: ./tmp/delete.sql
   
   - action: query_database
-    file: ./tmp/Faroeste_txAdminRecipe/db.sql
+    file: ./tmp/FRP_txAdminRecipe/db.sql
 
 # STANDALONE CFX
   - action: download_github
@@ -109,7 +112,7 @@ tasks:
     dest: ./resources/[faroeste]/frp_spawn_selector
 
   - action: download_file
-    url: https://github.com/abdulkadiraktas/Faroeste_ox_inventory/releases/latest/download/Faroeste_ox_inventory.zip
+    url: https://github.com/Faroeste-Roleplay/ox_inventory/releases/latest/download/ox_inventory.zip
     path: ./tmp/ox_inventory.zip
   
   - action: unzip
