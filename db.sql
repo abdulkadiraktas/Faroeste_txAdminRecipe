@@ -310,3 +310,24 @@ CREATE TABLE IF NOT EXISTS `user_credentials` (
   KEY `FK_user_credentials_user` (`userId`),
   CONSTRAINT `FK_user_credentials_user` FOREIGN KEY (`userId`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+CREATE TABLE
+  IF NOT EXISTS `horse` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `plate` CHAR(8) NOT NULL DEFAULT '',
+    `vin` CHAR(17) NOT NULL,
+    `owner` INT UNSIGNED NULL DEFAULT NULL,
+    `group` VARCHAR(50) NULL DEFAULT NULL,
+    `model` VARCHAR(20) NOT NULL,
+    `class` TINYINT UNSIGNED NULL DEFAULT NULL,
+    `data` LONGTEXT NOT NULL,
+    `trunk` LONGTEXT NULL DEFAULT NULL,
+    `glovebox` LONGTEXT NULL DEFAULT NULL,
+    `stored` VARCHAR(50) NULL DEFAULT NULL,
+    PRIMARY KEY (`id`) USING BTREE,
+    UNIQUE INDEX `plate` (`plate`) USING BTREE,
+    UNIQUE INDEX `vin` (`vin`) USING BTREE,
+    INDEX `FK_vehicles_characters` (`owner`) USING BTREE,
+    CONSTRAINT `FK_vehicles_characters` FOREIGN KEY (`owner`) REFERENCES `characters` (`charId`) ON UPDATE CASCADE ON DELETE CASCADE,
+    CONSTRAINT `FK_vehicles_groups` FOREIGN KEY (`group`) REFERENCES `ox_groups` (`name`) ON UPDATE CASCADE ON DELETE CASCADE
+  );
