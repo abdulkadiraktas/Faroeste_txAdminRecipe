@@ -5,8 +5,13 @@ author: Abdulkadir Aktaş
 description: Bu tarif Faroeste için Abdulkadir Aktaş tarafından hazırlanmıştır.
 
 variables:
-    databaseName: faroeste
-
+    steamApiKey : none
+    discord_guild_id : none
+    discord_bot_token : none
+    frp_language : en
+    server_locale : en-US
+    load_server_icon : Faroeste.png
+    sv_enforceGameBuild : 1491
 tasks:
 #  Download Base Files
   - action: download_github
