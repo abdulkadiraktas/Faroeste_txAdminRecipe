@@ -6,6 +6,7 @@ description: Bu tarif Faroeste için Abdulkadir Aktaş tarafından hazırlanmı�
 
 variables:
     steamApiKey : none
+    discord_webhook_for_logs : DISCORD_WEBHOOK_HERE
     discord_guild_id : none
     discord_bot_token : none
     frp_language : en
@@ -74,10 +75,19 @@ tasks:
     dest: ./resources/[ox]/
     src: ./tmp/ox_lib.zip
 
- 
-
-
 # faroeste side  
+  - action: download_github
+    src: https://github.com/Faroeste-Roleplay/frp_logs
+    ref: main
+    dest : ./resources/[faroeste]/frp_logs
+
+  # yazı değiştirelim
+  - action: replace_string
+    file: ./resources/[faroeste]/frp_logs/config.lua
+    search: "DISCORD_WEBHOOK_HERE"
+    replace : "{{discord_webhook_for_logs}}"
+
+
   - action: download_github
     src: https://github.com/Faroeste-Roleplay/frp_core
     ref: main
@@ -98,7 +108,6 @@ tasks:
     ref: main
     dest: ./resources/[faroeste]/frp_spawn_selector
 
-  
   - action: download_file
     url: https://github.com/abdulkadiraktas/Faroeste_ox_inventory/releases/latest/download/Faroeste_ox_inventory.zip
     path: ./tmp/ox_inventory.zip
