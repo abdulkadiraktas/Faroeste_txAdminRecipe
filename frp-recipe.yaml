@@ -52,8 +52,8 @@ tasks:
   - action: query_database
     file: ./tmp/delete.sql
   
-  - action: query_database
-    file: ./tmp/FRP_txAdminRecipe/db.sql
+  # - action: query_database
+  #   file: ./tmp/FRP_txAdminRecipe/db.sql
 
 # STANDALONE CFX
   - action: download_github
@@ -95,6 +95,9 @@ tasks:
     src: https://github.com/Faroeste-Roleplay/frp_core
     ref: main
     dest: ./resources/[faroeste]/frp_core
+
+  - action: query_database
+    file: ./resources/[faroeste]/frp_core/db.sql
 
   - action: download_github
     src: https://github.com/Faroeste-Roleplay/frp_creator
