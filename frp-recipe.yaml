@@ -82,7 +82,12 @@ tasks:
   - action: download_github
     src: https://github.com/Faroeste-Roleplay/frp_logs
     ref: main
-    dest : ./resources/[faroeste]/frp_logs
+    dest : ./resources/[faroeste]/frp_logs    
+  
+  - action: download_github
+    src: https://github.com/Faroeste-Roleplay/frp_lib
+    ref: main
+    dest : ./resources/[faroeste]/frp_lib
 
   # yazı değiştirelim
   - action: replace_string
@@ -119,7 +124,7 @@ tasks:
     path: ./tmp/ox_inventory.zip
   
   - action: unzip
-    dest: ./resources/[faroeste]/ox_inventory/
+    dest: ./resources/[faroeste]/
     src: ./tmp/ox_inventory.zip
 
 # Clean tmp
