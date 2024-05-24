@@ -89,6 +89,11 @@ tasks:
     ref: main
     dest : ./resources/[faroeste]/frp_lib
 
+  - action: download_github
+    src: https://github.com/Faroeste-Roleplay/frp_game_events
+    ref: main
+    dest : ./resources/[faroeste]/frp_game_events
+
   # yazı değiştirelim
   - action: replace_string
     file: ./resources/[faroeste]/frp_logs/config.lua
@@ -118,6 +123,26 @@ tasks:
     src: https://github.com/Faroeste-Roleplay/frp_spawn_selector
     ref: main
     dest: ./resources/[faroeste]/frp_spawn_selector
+        
+  - action: download_github
+    src: https://github.com/Faroeste-Roleplay/frp_death_state
+    ref: main
+    dest: ./resources/[faroeste]/frp_death_state
+
+  - action: download_github
+    src: https://github.com/Faroeste-Roleplay/frp_weapon
+    ref: main
+    dest: ./resources/[faroeste]/frp_weapon
+
+  - action: download_github
+    src: https://github.com/Faroeste-Roleplay/frp_appearance
+    ref: main
+    dest: ./resources/[faroeste]/frp_appearance
+
+  - action: download_github
+    src: https://github.com/Faroeste-Roleplay/frp_toast
+    ref: main
+    dest: ./resources/[faroeste]/frp_toast
 
   - action: download_file
     url: https://github.com/Faroeste-Roleplay/ox_inventory/releases/latest/download/ox_inventory.zip
